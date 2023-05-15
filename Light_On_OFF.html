@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Light On/Off Animation</title>
+  <style>
+    /* CSS for light on/off animation */
+    .light {
+      width: 100px;
+      height: 100px;
+      background-color: #000;
+      border-radius: 50%;
+      position: relative;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    
+    .light::before {
+      content: "";
+      width: 60px;
+      height: 60px;
+      background-color: #ffdb58;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 1;
+      animation-name: flicker;
+      animation-duration: 0.2s;
+      animation-timing-function: steps(10, end);
+      animation-iteration-count: infinite;
+    }
+    
+    @keyframes flicker {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    .light.off::before {
+      animation-name: none;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body> 
+    <Center>
+  <div class="light"></div>
+  
+  <button onclick="toggleLight()">Toggle Light</button>
+  
+  <script>
+    function toggleLight() {
+      var light = document.querySelector('.light');
+      light.classList.toggle('off');
+    }
+  </script> 
+  </Center>
+</body>
+</html>
+
